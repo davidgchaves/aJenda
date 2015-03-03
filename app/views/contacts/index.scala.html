@@ -1,5 +1,19 @@
 @(contacts: List[Contact])
 
 @main("Contacts Index") {
+  <table>
+    <thead>
+      <tr>
+        <td>Name</td>
+      </tr>
+    </thead>
+    <tbody>
+      @for(contact <- contacts) {
+        <tr>
+          <td>Name: @contact.name</td>
+        </tr>
+      }
+    </tbody>
+  </table>
 }
 
