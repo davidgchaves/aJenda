@@ -11,4 +11,8 @@ public class Contacts extends Controller{
         Form<Contact> contactForm = Form.form(Contact.class);
         return ok(views.html.contacts.newContact.render(contactForm));
     }
+
+    public static Result create() {
+        return ok();
+    }
 }
