@@ -13,6 +13,9 @@ public class Contacts extends Controller{
     }
 
     public static Result create() {
-        return ok();
+        Form<Contact> contactForm = Form.form(Contact.class).bindFromRequest();
+        Contact contact = contactForm.get();
+        contact.save();
+        return redirect(routes.Contacts.index());
     }
 }
