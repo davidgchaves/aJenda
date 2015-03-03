@@ -1,4 +1,9 @@
 @(contactForm: Form[Contact])
 
+@import helper._
+
 @main("New contact") {
+    @form(routes.Contacts.create()) {
+        @inputText(contactForm("name"))
+    }
 }
