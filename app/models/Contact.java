@@ -17,4 +17,6 @@ public class Contact extends Model {
   public String name;
   public String phone;
   public String email;
+
+  public static Finder<Long, Contact> finder = new Finder<Long, Contact>(Long.class, Contact.class);
 }
