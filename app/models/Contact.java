@@ -1,4 +1,6 @@
 package models;
 
-public class Contact {
+import play.db.ebean.Model;
+
+public class Contact extends Model {
 }
