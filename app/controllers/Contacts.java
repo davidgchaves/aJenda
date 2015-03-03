@@ -1,5 +1,7 @@
 package controllers;
 
+import java.util.List;
+
 import play.mvc.Controller;
 import play.mvc.Result;
 import play.data.Form;
@@ -9,7 +11,8 @@ import models.Contact;
 public class Contacts extends Controller{
 
     public static Result index() {
-        return null;
+        List<Contact> contacts = Contact.finder.all();
+        return ok(views.html.contacts.index.render(contacts));
     }
 
     public static Result newContact() {
