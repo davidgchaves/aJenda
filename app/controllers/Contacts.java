@@ -7,6 +7,11 @@ import play.data.Form;
 import models.Contact;
 
 public class Contacts extends Controller{
+
+    public static Result index() {
+        return null;
+    }
+
     public static Result newContact() {
         Form<Contact> contactForm = Form.form(Contact.class);
         return ok(views.html.contacts.newContact.render(contactForm));
@@ -18,4 +23,5 @@ public class Contacts extends Controller{
         contact.save();
         return redirect(routes.Contacts.index());
     }
+
 }
