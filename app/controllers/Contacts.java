@@ -27,4 +27,8 @@ public class Contacts extends Controller{
         return redirect(routes.Contacts.index());
     }
 
+    public static Result show(Long id) {
+      return ok();
+    }
+
 }
