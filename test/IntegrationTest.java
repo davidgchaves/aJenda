@@ -29,26 +29,26 @@ public class IntegrationTest {
     }
 
     @Test
-    public void creatingANewContactSuccessfullyItShowsUpInTheIndexPage() {
-        final Integer PORT = 3333;
+    public void creatingANewContactSuccessfullyShowsUpInTheIndexPage() {
+        final int PORT = 3333;
         running(testServer(PORT, fakeApplication(inMemoryDatabase())), HTMLUNIT, browser -> {
-                IndexContactsPage indexContactsPage = new IndexContactsPage(browser.getDriver(), PORT);
-                NewContactPage newContactPage = new NewContactPage(browser.getDriver(), PORT);
-                String name = "Andrei Tarkovski";
-                String phone = "981665544";
-                String email = "andrei.tarkovski@example.com";
+            IndexContactsPage indexContactsPage = new IndexContactsPage(browser.getDriver(), PORT);
+            NewContactPage newContactPage = new NewContactPage(browser.getDriver(), PORT);
+            String name = "Andrei Tarkovski";
+            String phone = "981665544";
+            String email = "andrei.tarkovski@example.com";
 
-                browser.goTo(indexContactsPage);
-                indexContactsPage.click("#goto-new-contact");
+            browser.goTo(indexContactsPage);
+            indexContactsPage.click("#goto-new-contact");
 
-                newContactPage.fill("#name").with(name);
-                newContactPage.fill("#phone").with(phone);
-                newContactPage.fill("#email").with(email);
-                newContactPage.submit("#create-contact");
+            newContactPage.fill("#name").with(name);
+            newContactPage.fill("#phone").with(phone);
+            newContactPage.fill("#email").with(email);
+            newContactPage.submit("#create-contact");
 
-                assertThat(browser.pageSource()).contains("Name: " + name);
-                assertThat(browser.pageSource()).contains("Phone: " + phone);
-                assertThat(browser.pageSource()).contains("Email: " + email);
+            assertThat(browser.pageSource()).contains("Name: " + name);
+            assertThat(browser.pageSource()).contains("Phone: " + phone);
+            assertThat(browser.pageSource()).contains("Email: " + email);
         });
     }
 
