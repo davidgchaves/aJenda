@@ -17,10 +17,7 @@ import models.Contact;
 public class IntegrationTest {
 
     private final int PORT = 3333;
-    /**
-     * add your integration test here
-     * in this example we just check if the welcome page is being shown
-     */
+
     @Test
     public void test() {
         running(testServer(PORT, fakeApplication(inMemoryDatabase())), HTMLUNIT, new Callback<TestBrowser>() {
@@ -32,7 +29,7 @@ public class IntegrationTest {
     }
 
     @Test
-    public void creatingANewContactSuccessfullyShowsUpInTheIndexPage() {
+    public void user_creates_a_contact_successfully() {
         running(testServer(PORT, fakeApplication(inMemoryDatabase())), HTMLUNIT, browser -> {
             IndexContactsPage indexContactsPage = new IndexContactsPage(browser.getDriver(), PORT);
             NewContactPage newContactPage = new NewContactPage(browser.getDriver(), PORT);
@@ -55,7 +52,7 @@ public class IntegrationTest {
     }
 
     @Test
-    public void showing_contact_details() {
+    public void user_sees_contact_details() {
         running(testServer(PORT, fakeApplication(inMemoryDatabase())), HTMLUNIT, browser -> {
             Contact andrei = new Contact("Andrei Tarkovski", "981665544", "andrei.tarkovski@example.com");
             andrei.save();
