@@ -12,7 +12,7 @@ public class Contact extends Model {
 
   @Id
   @GeneratedValue
-  public long Id;
+  public long id;
 
   public String name;
   public String phone;
