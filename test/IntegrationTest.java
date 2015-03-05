@@ -6,11 +6,13 @@ import play.libs.F.*;
 
 import static play.test.Helpers.*;
 import static org.fest.assertions.Assertions.*;
-
 import static org.fluentlenium.core.filter.FilterConstructor.*;
 
 import test.pages.NewContactPage;
 import test.pages.IndexContactsPage;
+import test.pages.ShowContactPage;
+
+import models.Contact;
 
 public class IntegrationTest {
 
@@ -49,6 +51,23 @@ public class IntegrationTest {
             assertThat(browser.pageSource()).contains("Name: " + name);
             assertThat(browser.pageSource()).contains("Phone: " + phone);
             assertThat(browser.pageSource()).contains("Email: " + email);
+        });
+    }
+
+    @Test
+    public void showing_contact_details() {
+        final int PORT = 3333;
+        running(testServer(PORT, fakeApplication(inMemoryDatabase())), HTMLUNIT, browser -> {
+            Contact andrei = new Contact("Andrei Tarkovski", "981665544", "andrei.tarkovski@example.com");
+            andrei.save();
+
+            ShowContactPage showContactPage = new ShowContactPage(browser.getDriver(), PORT, andrei);
+
+            browser.goTo(showContactPage);
+
+            assertThat(browser.pageSource()).contains("Name: " + andrei.name);
+            assertThat(browser.pageSource()).contains("Phone: " + andrei.phone);
+            assertThat(browser.pageSource()).contains("Email: " + andrei.email);
         });
     }
 
