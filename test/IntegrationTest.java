@@ -10,6 +10,7 @@ import static org.fest.assertions.Assertions.*;
 import static org.fluentlenium.core.filter.FilterConstructor.*;
 
 import test.pages.NewContactPage;
+import test.pages.IndexContactsPage;
 
 public class IntegrationTest {
 
@@ -28,15 +29,18 @@ public class IntegrationTest {
     }
 
     @Test
-    public void whenCreatingANewContactSuccessfullyItShowsUpInTheIndexPage() {
-        running(testServer(3333, fakeApplication(inMemoryDatabase())), HTMLUNIT, new Callback<TestBrowser>() {
+    public void creatingANewContactSuccessfullyItShowsUpInTheIndexPage() {
+        Integer port = 3333;
+        running(testServer(port, fakeApplication(inMemoryDatabase())), HTMLUNIT, new Callback<TestBrowser>() {
             public void invoke(TestBrowser browser) {
-                NewContactPage newContactPage = new NewContactPage(browser.getDriver(), 3333);
+                IndexContactsPage indexContactsPage = new IndexContactsPage(browser.getDriver(), port);
+                NewContactPage newContactPage = new NewContactPage(browser.getDriver(), port);
                 String name = "Andrei Tarkovski";
                 String phone = "981665544";
                 String email = "andrei.tarkovski@example.com";
 
-                browser.goTo(newContactPage);
+                browser.goTo(indexContactsPage);
+                indexContactsPage.click("#goto-new-contact");
 
                 newContactPage.fill("#name").with(name);
                 newContactPage.fill("#phone").with(phone);
