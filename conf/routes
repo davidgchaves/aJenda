@@ -6,8 +6,8 @@
 GET     /                           controllers.Application.index()
 
 # Contacts Resource
-GET     /contacts/                  controllers.Contacts.index()
-POST    /contacts/                  controllers.Contacts.create()
+GET     /contacts                   controllers.Contacts.index()
+POST    /contacts                   controllers.Contacts.create()
 GET     /contacts/new               controllers.Contacts.newContact()
 
 # Map static resources from the /public folder to the /assets URL path
