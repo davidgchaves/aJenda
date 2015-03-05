@@ -45,9 +45,9 @@ public class IntegrationTest {
             newContactPage.fill("#email").with(email);
             newContactPage.submit("#create-contact");
 
-            assertThat(browser.pageSource()).contains("Name: " + name);
-            assertThat(browser.pageSource()).contains("Phone: " + phone);
-            assertThat(browser.pageSource()).contains("Email: " + email);
+            assertThat(browser.pageSource()).contains(name);
+            assertThat(browser.pageSource()).contains(phone);
+            assertThat(browser.pageSource()).contains(email);
         });
     }
 

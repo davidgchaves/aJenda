@@ -5,14 +5,16 @@
     <thead>
       <tr>
         <td>Name</td>
+        <td>Phone</td>
+        <td>Email</td>
       </tr>
     </thead>
     <tbody>
       @for(contact <- contacts) {
         <tr>
-          <td>Name: @contact.name</td>
-          <td>Phone: @contact.phone</td>
-          <td>Email: @contact.email</td>
+          <td>@contact.name</td>
+          <td>@contact.phone</td>
+          <td>@contact.email</td>
         </tr>
       }
     </tbody>
