@@ -28,7 +28,8 @@ public class Contacts extends Controller{
     }
 
     public static Result show(Long id) {
-      return ok();
+      Contact contact = Contact.finder.byId(id);
+      return ok(views.html.contacts.show.render(contact));
     }
 
 }
