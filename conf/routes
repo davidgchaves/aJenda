@@ -3,7 +3,7 @@
 # ~~~~
 
 # Home page
-GET     /                           controllers.Application.index()
+GET     /                           controllers.Contacts.index()
 
 # Contacts Resource
 GET     /contacts                   controllers.Contacts.index()
