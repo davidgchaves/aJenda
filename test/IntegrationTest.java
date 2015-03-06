@@ -19,12 +19,22 @@ public class IntegrationTest {
     private final int PORT = 3333;
 
     @Test
-    public void test() {
-        running(testServer(PORT, fakeApplication(inMemoryDatabase())), HTMLUNIT, new Callback<TestBrowser>() {
-            public void invoke(TestBrowser browser) {
-                browser.goTo("http://localhost:3333");
-                assertThat(browser.pageSource()).contains("Your new application is ready.");
-            }
+    public void user_visiting_home_page_sees_contacts() {
+        running(testServer(PORT, fakeApplication(inMemoryDatabase())), HTMLUNIT, browser -> {
+            Contact andrei = new Contact("Andrei Tarkovski", "981665544", "andrei.tarkovski@example.com");
+            andrei.save();
+
+            Contact hou = new Contact("Hou Hsiao-hsien", "934665544", "hou.hsiao.hsien@example.com");
+            hou.save();
+
+            browser.goTo("http://localhost:" + PORT);
+
+            assertThat(browser.pageSource()).contains(andrei.name);
+            assertThat(browser.pageSource()).contains(andrei.phone);
+            assertThat(browser.pageSource()).contains(andrei.email);
+            assertThat(browser.pageSource()).contains(hou.name);
+            assertThat(browser.pageSource()).contains(hou.phone);
+            assertThat(browser.pageSource()).contains(hou.email);
         });
     }
 
